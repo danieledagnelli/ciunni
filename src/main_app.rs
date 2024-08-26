@@ -1,3 +1,5 @@
+use eframe::egui;
+
 fn get_grid_size() -> (usize, usize) {
     (usize::MAX, usize::MAX) // Maximum possible rows, 10 columns
 }
