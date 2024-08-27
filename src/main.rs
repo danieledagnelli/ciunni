@@ -1,20 +1,11 @@
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-#![allow(rustdoc::missing_crate_level_docs)]
+mod ui;
+use ui::ciunni_app::Ciunni;
 
-use eframe::egui;
-
-
-fn main() -> eframe::Result<()> {
-    env_logger::init();
-
-    let options = eframe::NativeOptions {
-        viewport: egui::ViewportBuilder::default().with_inner_size([1024.0, 768.0]),
-        ..Default::default()
-    };
-
+fn main() -> Result<(), eframe::Error> {
+    let options = eframe::NativeOptions::default();
     eframe::run_native(
-        "Grid Application",
+        "File Selector App",
         options,
-        Box::new(|cc| Ok(Box::new(GridApp::new(cc)))),
+        Box::new(|_cc| Ok(Box::new(Ciunni::default()))),
     )
 }
