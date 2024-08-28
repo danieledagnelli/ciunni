@@ -1,11 +1,11 @@
-mod ui;
-use ui::ciunni_app::Ciunni;
+// main.rs
+use ciunni::Ciunni;
 
-fn main() -> Result<(), eframe::Error> {
-    let options = eframe::NativeOptions::default();
+fn main() -> eframe::Result<()> {
+    let native_options = eframe::NativeOptions::default();
     eframe::run_native(
-        "File Selector App",
-        options,
-        Box::new(|_cc| Ok(Box::new(Ciunni::default()))),
+        "Ciunni",
+        native_options,
+        Box::new(|cc| Ok(Box::new(Ciunni::new(cc)))),
     )
 }

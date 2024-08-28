@@ -1,1 +1,2 @@
-pub mod ciunni_app;
+pub mod file_selector;
+pub mod hex_viewer;
