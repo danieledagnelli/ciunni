@@ -16,11 +16,17 @@ impl Ciunni {
 }
 
 impl eframe::App for Ciunni {
-    fn update(&mut self, ctx: &Context, _frame: &mut eframe::Frame) {
+    fn update(&mut self, ctx: &Context, frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            file_selector::ui(self, ui);
-            hex_viewer::ui(self, ui);
+            ui.with_layout(egui::Layout::top_down_justified(egui::Align::LEFT), |ui| {
+                file_selector::ui(self, ui);
+                ui.add_space(10.0);
+                hex_viewer::ui(self, ui);
+            });
         });
+
+        // Request a repaint on every frame to ensure smooth resizing
+        ctx.request_repaint();
     }
 }
 

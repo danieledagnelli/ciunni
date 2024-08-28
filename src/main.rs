@@ -2,7 +2,13 @@
 use ciunni::Ciunni;
 
 fn main() -> eframe::Result<()> {
-    let native_options = eframe::NativeOptions::default();
+    let native_options = eframe::NativeOptions {
+        
+        hardware_acceleration: eframe::HardwareAcceleration::Preferred,
+        centered: true,
+        ..Default::default()    
+    };
+
     eframe::run_native(
         "Ciunni",
         native_options,

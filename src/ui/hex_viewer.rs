@@ -44,4 +44,3 @@ fn display_hex_rows(ui: &mut Ui, bytes: &[u8], row_range: std::ops::Range<usize>
         display_hex_row(ui, offset, chunk);
     }
 }
-
