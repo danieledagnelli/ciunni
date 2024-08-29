@@ -1,6 +1,5 @@
-use crate::Ciunni;
+use crate::{utils::byte_formatting::format_chunk, Ciunni};
 use egui::{RichText, ScrollArea, TextStyle, Ui};
-use crate::utils::format_chunk;
 
 fn display_hex_row(ui: &mut Ui, offset: usize, chunk: &[u8]) {
     ui.horizontal(|ui| {
@@ -13,17 +12,16 @@ fn display_hex_row(ui: &mut Ui, offset: usize, chunk: &[u8]) {
 
 pub fn ui(ciunni: &Ciunni, ui: &mut Ui) {
     if let Some(bytes) = &ciunni.file_bytes {
-        ui.collapsing("File bytes", |ui| {
-            scrollable_hex_view(ui, bytes);
-        });
+        scrollable_hex_view(ui, bytes);
     }
 }
 
 fn scrollable_hex_view(ui: &mut Ui, bytes: &[u8]) {
     let (row_height, num_rows) = calculate_view_dimensions(ui, bytes);
     ScrollArea::vertical()
-        .auto_shrink([false; 2]) // Prevent shrinking
-        .max_height(f32::INFINITY) // Allow infinite height
+        .auto_shrink([false; 2])
+        .max_height(f32::INFINITY)
+        .min_scrolled_width(164.0) // Increase scrollbar width
         .scroll_bar_visibility(egui::scroll_area::ScrollBarVisibility::AlwaysVisible)
         .show_rows(ui, row_height, num_rows, |ui, row_range| {
             display_hex_rows(ui, bytes, row_range);

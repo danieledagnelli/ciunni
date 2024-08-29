@@ -1,4 +1,3 @@
-
 pub fn format_chunk_hex_values(chunk: &[u8]) -> Vec<String> {
     chunk.iter().map(|b| format!("{:02X}", b)).collect()
 }
